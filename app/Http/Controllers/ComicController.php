@@ -47,7 +47,7 @@ class ComicController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Comic  $game
+     * @param  \App\Comic  $comic
      * @return \Illuminate\Http\Response
      */
     public function show(Comic $comic)
@@ -58,7 +58,7 @@ class ComicController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Comic  $game
+     * @param  \App\Comic  $comic
      * @return \Illuminate\Http\Response
      */
     public function edit(Comic $comic)
@@ -70,7 +70,7 @@ class ComicController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Comic  $game
+     * @param  \App\Comic  $comic
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Comic $comic)
@@ -81,7 +81,7 @@ class ComicController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Comic  $game
+     * @param  \App\Comic  $comic
      * @return \Illuminate\Http\Response
      */
     public function destroy(Comic $comic)
