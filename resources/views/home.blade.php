@@ -1,24 +1,12 @@
-<!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-
-        <title>Laravel</title>
-
-        <!-- Fonts -->
-        <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@200;600&display=swap" rel="stylesheet">
-
-        <!-- Styles -->
-        <link rel="stylesheet" href="{{asset('css/app.css')}}">
-
-    </head>
-    <body>
-        
-    
-    
-    
-    
-        <script src="{{asset('js/app.js')}}"></script>
-    </body>
-</html>
+@extends('layouts.app')
+@section('content')
+<div class="p-5 bg-light">
+    <div class="container">
+        <h1 class="display-3">HOMEPAGE</h1>
+        <p class="lead">Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptates, illum.</p>
+        <p class="lead">
+            <a class="btn btn-primary btn-lg" href="{{route('comics.index')}}" role="button">Go to Comics</a>
+        </p>
+    </div>
+</div>
+@endsection
