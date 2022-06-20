@@ -1,8 +1,10 @@
 @extends('layouts.app')
 @section('content')
-<div class="heading text-center py-5">
-    <h1>Comics</h1>
-    <a name="" id="" class="btn btn-primary" href="{{route('comics.create')}}">Create comic</a>
+<div class="heading container d-flex align-items-center justify-content-between text-center py-5">
+    <h1>All Comics</h1>
+    <div>
+        <a name="" id="" class="btn btn-primary" href="{{route('comics.create')}}">Create new comic</a>
+    </div>
 </div>
 <div class="container">
     <table class="table">
@@ -12,21 +14,40 @@
                 <th>Thumb</th>
                 <th>Title</th>
                 <th>Description</th>
-                <th>Cover Image</th>
-                <th>Actions</th>
+                <th>Price</th>
+                <th>Series</th>
+                <th>Sale_date</th>
+                <th>Type</th>
             </tr>
         </thead>
         <tbody>
-            @foreach($comics as $comic)
+            @forelse($comics as $comic)
             <tr>
                 <td scope="row">{{$comic->id}}</td>
-                <td><img width="120" src="{{$comic->thumb}}" alt=""></td>
+                <td>
+                    <img width="90" src="{{$comic->thumb}}" alt="">
+                </td>
                 <td>{{$comic->title}}</td>
                 <td>{{$comic->description}}</td>
-                <td><img width="120" src="{{$comic->cover_image}}" alt=""></td>
-                <td><a href="{{route('comics.show',$comic->id)}}">View</a> - Edit - Delete</td>
+                <td>{{$comic->price}}</td>
+                <td>{{$comic->series}}</td>
+                <td>{{$comic->sale_date}}</td>
+                <td>{{$comic->type}}</td>
+                <td>
+                    <a href="{{route('comics.show',$comic->id)}}">View</a>
+                    <a href="{{route('comics.edit',$comic->id)}}">Edit</a>
+                    <form action="{{route('comics.destroy',$comic->id)}}" method="post">
+                        @csrf
+                        @method('DELETE')                        
+                        <button class="btn btn-danger" type="submit">Delete</button>
+                    </form>
+                </td>
             </tr>
-            @endforeach
+            @empty
+            <tr>
+                <td scope="row">No comics yet!</td>
+            </tr>
+            @endforelse
         </tbody>
     </table>
 </div>

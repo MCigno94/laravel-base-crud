@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Comic;
+use App\Http\Requests\ComicRequest;
 use Illuminate\Http\Request;
 
 class ComicController extends Controller
@@ -14,9 +15,7 @@ class ComicController extends Controller
      */
     public function index()
     {
-
-        $comics = Comic::all()->sortDesc();
-
+        $comics = Comic::all();
         return view('comics.index',compact('comics'));
     }
 
@@ -27,7 +26,7 @@ class ComicController extends Controller
      */
     public function create()
     {
-       return view('comics.create');
+        return view('comics.create');
     }
 
     /**
@@ -36,10 +35,14 @@ class ComicController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ComicRequest $request)
     {
-        $data = $request->all();
-        Comic::create($data);
+        
+
+        //$data = $request->all();
+        $validated_data = $request->validated();
+        Comic::create($validate_data);
+
         
         return redirect()->route('comics.index');
     }
@@ -63,7 +66,8 @@ class ComicController extends Controller
      */
     public function edit(Comic $comic)
     {
-        //
+        return view('comics.edit',compact('comic'));
+
     }
 
     /**
@@ -73,9 +77,15 @@ class ComicController extends Controller
      * @param  \App\Comic  $comic
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Comic $comic)
+    public function update(ComicRequest $request, Comic $comic)
     {
-        //
+        //$data = $request->all();
+        
+        $validated_data = $request->validated();
+        
+        $comic->update($validated_data);
+
+        return redirect()->route('comics.index');
     }
 
     /**
@@ -86,6 +96,7 @@ class ComicController extends Controller
      */
     public function destroy(Comic $comic)
     {
-        //
+        $comic->delete();
+        return redirect()->route('comics.index');
     }
 }

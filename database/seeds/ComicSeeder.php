@@ -1,9 +1,9 @@
 <?php
 
-use App\Comic;
 use Illuminate\Database\Seeder;
+use App\Comic;
 
-class ComicTableSeeder extends Seeder
+class ComicSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -13,7 +13,7 @@ class ComicTableSeeder extends Seeder
     public function run()
     {
         $comics = config('db.comics');
-
+        
         foreach ($comics as $comic) {
             $new_comic = new Comic();
             $new_comic->title = $comic['title'];
